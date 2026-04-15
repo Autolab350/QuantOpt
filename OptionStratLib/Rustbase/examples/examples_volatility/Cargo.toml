@@ -1,0 +1,13 @@
+[package]
+name = "examples_volatility"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+statrs = { workspace = true }
+rand = { workspace = true }
+optionstratlib = { workspace = true , features = ["plotly", "static_export"]}
+positive = { workspace = true }
+tracing = { workspace = true }
+rust_decimal_macros = { workspace = true }
+rust_decimal = { workspace = true }

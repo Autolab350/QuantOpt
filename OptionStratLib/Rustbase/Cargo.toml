@@ -1,0 +1,143 @@
+[package]
+name = "optionstratlib"
+version = "0.15.2"
+edition = "2024"
+authors = ["Joaquin Bejar <jb@taunais.com>"]
+description = "OptionStratLib is a comprehensive Rust library for options trading and strategy development across multiple asset classes."
+license = "MIT"
+readme = "../README.md"
+repository = "https://github.com/joaquinbejar/OptionStratLib"
+homepage = "https://github.com/joaquinbejar/OptionStratLib"
+keywords = ["finance", "options", "trading"]
+categories = ["finance", "data-structures"]
+include = [
+    "src/**/*",
+    "Cargo.toml",
+    "../README.md",
+    "../LICENSE",
+]
+
+
+[features]
+default = []
+plotly = ["dep:plotly"]
+static_export = [
+    "plotly",
+    "async",
+]
+async = [
+    "dep:tokio",
+    "dep:async-trait",
+    "dep:reqwest",
+    "dep:futures"
+]
+
+[dependencies]
+chrono = { workspace = true, features = ["serde"] }
+approx = { workspace = true }
+plotly = { workspace = true, default-features = false, optional = true, features = ["static_export_default"] }
+statrs = { workspace = true }
+rand = { workspace = true }
+rand_distr = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+num-traits = { workspace = true }
+serde_json = { workspace = true }
+csv = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+rayon = { workspace = true }
+itertools = { workspace = true }
+rust_decimal = { workspace = true,  features = ["maths", "serde"] }
+rust_decimal_macros = { workspace = true }
+zip = { workspace = true }
+lazy_static = { workspace = true }
+uuid = { workspace = true, features = ["v4", "serde"] }
+prettytable-rs = { workspace = true }
+pretty-simple-display = { workspace = true }
+utoipa = { workspace = true, features = ["axum_extras", "chrono", "decimal"] }
+indicatif = { workspace = true }
+thiserror = { workspace = true }
+positive = { workspace = true }
+expiration_date = { workspace = true }
+financial_types = { workspace = true }
+option_type = { workspace = true }
+tokio = { workspace = true, optional = true }
+async-trait = { workspace = true, optional = true }
+reqwest = { workspace = true, optional = true }
+futures = { workspace = true, optional = true }
+
+
+[dev-dependencies]
+criterion = { version = "0.8", default-features = false, features = ["html_reports"] }
+mockall = "0.14"
+tempfile = "3.23"
+static_assertions = "1.1"
+proptest = "1.5"
+
+[[test]]
+name = "tests"
+path = "tests/unit/mod.rs"
+
+[[test]]
+name = "property_tests"
+path = "tests/property/mod.rs"
+
+[[bench]]
+name = "benches"
+path = "benches/mod.rs"
+harness = false
+
+[lib]
+name = "optionstratlib"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[workspace]
+members = [
+    "examples/examples_simulation",
+    "examples/examples_strategies_best",
+    "examples/examples_strategies_delta",
+    "examples/examples_strategies",
+    "examples/examples_visualization",
+    "examples/examples_chain",
+    "examples/examples_volatility",
+    "examples/examples_curves",
+    "examples/examples_surfaces",
+    "examples/examples_metrics",
+    "examples/examples_exotics",
+]
+
+[workspace.dependencies]
+optionstratlib = { path = "." }
+tracing = "0.1"
+rust_decimal = { version = "1.40", features = ["maths", "serde"] }
+rust_decimal_macros = "1.40"
+plotly = { version = "0.14", default-features = false, features = ["static_export_default"] }
+chrono = { version = "0.4", features = ["serde"] }
+rand = { version = "0.10" }
+statrs = "0.18"
+tracing-subscriber = { version = "0.3"}
+num-traits = "0.2"
+serde_json = "1.0"
+csv = { version = "1.4"}
+serde = { version = "1.0", features = ["derive"] }
+rayon = { version = "1.11" }
+itertools = "0.14"
+zip = "6.0"
+lazy_static = "1.5"
+uuid = { version = "1.19", features = ["v4", "serde"] }
+approx = "0.5"
+rand_distr = "0.6"
+prettytable-rs = "0.10"
+pretty-simple-display = "0.1"
+utoipa = { version = "5.4", features = ["axum_extras", "chrono", "decimal"] }
+indicatif = "0.18"
+thiserror = "2.0"
+positive = { version = "0.4", features = ["utoipa"] }
+expiration_date = { version = "0.1", features = ["utoipa"] }
+financial_types = { version = "0.1", features = ["utoipa"] }
+option_type = { version = "0.1", features = ["utoipa"] }
+tokio = { version = "1.43", features = ["full"] }
+async-trait = "0.1"
+reqwest = { version = "0.13", features = ["json"] }
+futures = "0.3"

@@ -1,0 +1,141 @@
+/******************************************************************************
+   Author: Joaquín Béjar García
+   Email: jb@taunais.com
+   Date: 25/8/25
+******************************************************************************/
+
+//! # OptionStratLib Prelude
+//!
+//! The prelude module provides a convenient way to import the most commonly used
+//! types, traits, and functions from the OptionStratLib library. This module is
+//! designed to reduce the amount of boilerplate imports needed when working with
+//! the library.
+//!
+//! ## Usage
+//!
+//! Add this to your imports to get access to the most commonly used items:
+//!
+//! ```rust
+//! use optionstratlib::prelude::*;
+//! ```
+//!
+//! This will import all the essential types and traits you need for most
+//! options trading and strategy development tasks.
+
+// Core model types
+pub use crate::model::{
+    BasicAxisTypes, ExpirationDate, Options, Position, Trade,
+    types::{Action, OptionStyle, OptionType, Side},
+};
+pub use crate::strategies::{
+    StrategyConstructor,
+    base::{
+        BasicAble, BreakEvenable, Optimizable, Positionable, Strategable, Strategies, StrategyType,
+        Validable,
+    },
+    // Specific strategy implementations (commonly used)
+    bear_call_spread::BearCallSpread,
+    bear_put_spread::BearPutSpread,
+    bull_call_spread::BullCallSpread,
+    bull_put_spread::BullPutSpread,
+    call_butterfly::CallButterfly,
+    collar::Collar,
+    covered_call::CoveredCall,
+    custom::CustomStrategy,
+    delta_neutral::{
+        AdjustmentAction, AdjustmentConfig, AdjustmentError, AdjustmentOptimizer, AdjustmentPlan,
+        AdjustmentTarget, DeltaNeutrality, PortfolioGreeks,
+    },
+    iron_butterfly::IronButterfly,
+    iron_condor::IronCondor,
+    long_butterfly_spread::LongButterflySpread,
+    long_call::LongCall,
+    long_put::LongPut,
+    long_straddle::LongStraddle,
+    long_strangle::LongStrangle,
+    poor_mans_covered_call::PoorMansCoveredCall,
+    probabilities::ProbabilityAnalysis,
+    protective_put::ProtectivePut,
+    short_butterfly_spread::ShortButterflySpread,
+    short_call::ShortCall,
+    short_put::ShortPut,
+    short_straddle::ShortStraddle,
+    short_strangle::ShortStrangle,
+    utils::FindOptimalSide,
+};
+
+// Greeks calculations
+pub use crate::greeks::*;
+
+// Pricing and profit calculations
+pub use crate::pricing::payoff::*;
+pub use crate::pricing::*;
+
+// PnL calculations
+pub use crate::pnl::{PnL, PnLCalculator};
+
+pub use crate::backtesting::*;
+
+// Visualization
+pub use crate::visualization::{Graph, GraphData, Series2D, Surface3D, TraceMode};
+
+#[cfg(feature = "plotly")]
+pub use crate::visualization::utils::make_surface;
+
+// Chain operations
+pub use crate::chains::{OptionData, StrategyLegs, chain::OptionChain, utils::OptionChainParams};
+
+// Curves and surfaces
+pub use crate::curves::{BasicCurves, Curvable, Curve, Point2D, StatisticalCurve};
+pub use crate::surfaces::{BasicSurfaces, Point3D, Surfacable, Surface};
+
+// Geometrics (commonly used in curve examples)
+pub use crate::geometrics::{ConstructionMethod, ConstructionParams, GeometricObject, Plottable};
+
+// Volatility models
+pub use crate::volatility::*;
+
+// Performance metrics
+pub use crate::metrics::*;
+
+// Error types (most commonly encountered)
+pub use crate::error::{
+    ChainError, CurveError, DecimalError, Error, GraphError, GreeksError, InterpolationError,
+    MetricsError, OhlcvError, OperationErrorKind, OptionsError, PositionError, PricingError,
+    ProbabilityError, StrategyError, SurfaceError, TransactionError, VolatilityError,
+};
+
+// Utility functions and traits
+pub use crate::model::utils::ToRound;
+pub use crate::utils::{
+    Len, OhlcvCandle, TimeFrame,
+    others::calculate_log_returns,
+    read_ohlcv_from_zip, setup_logger,
+    time::{convert_time_frame, get_tomorrow_formatted, get_x_days_formatted},
+};
+
+// Commonly used external dependencies
+pub use chrono::Utc;
+pub use positive::{Positive, assert_pos_relative_eq, pos_or_panic, spos};
+pub use rust_decimal::Decimal;
+pub use rust_decimal::prelude::ToPrimitive;
+pub use rust_decimal_macros::dec;
+pub use std::path::Path;
+
+// Simulation types and functions
+pub use crate::simulation::{
+    ExitPolicy, Simulate, SimulationStats, WalkParams, WalkType, WalkTypeAble, check_exit_policy,
+    randomwalk::RandomWalk,
+    simulator::Simulator,
+    steps::{Step, Xstep, Ystep},
+};
+
+// Chain and series types and generators
+pub use crate::chains::{
+    OptionChainBuildParams, generator_optionchain, generator_positive, utils::OptionDataPriceParams,
+};
+pub use crate::series::{OptionSeries, OptionSeriesBuildParams, generator_optionseries};
+
+// Volatility functions
+pub use crate::volatility::{adjust_volatility, constant_volatility};
+pub use tracing::{debug, error, info, trace, warn};

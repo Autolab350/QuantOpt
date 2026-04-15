@@ -1,0 +1,14 @@
+[package]
+name = "examples_simulation"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+optionstratlib = { workspace = true , features = ["plotly", "static_export"] }
+positive = { workspace = true }
+tracing = { workspace = true }
+rust_decimal_macros = { workspace = true }
+rust_decimal = { workspace = true }
+prettytable-rs = "0.10"
+serde_json = { workspace = true }
+indicatif = "0.17"

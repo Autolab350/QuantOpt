@@ -1,0 +1,15 @@
+Data-sources
+
+pandas-datareader is a Python library that provides up-to-date remote data access for pandas, making it easy to pull financial and economic data into a DataFrame.
+
+Repository: https://github.com/pydata/pandas-datareader
+
+
+Nasdaq Data Link is a data platform with both free and paid datasets: free includes open/public datasets and premium samples, while paid covers most of the full financial and alternative-data catalog. The official repo for the R package is here: https://github.com/nasdaq/data-link-r
+
+
+https://github.com/massive-com/client-python
+https://github.com/alpacahq/alpaca-py
+https://github.com/twelvedata/twelvedata-python
+https://github.com/RomelTorres/alpha_vantage
+https://github.com/paoloanzn/free-code

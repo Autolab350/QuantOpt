@@ -1,0 +1,27 @@
+MARKET FUNDAMENTALS AND LOGIC
+
+1. GEX ENGINE SCALING
+   All Gold futures calculations use dynamic spot anchoring via /GC=F ticker.
+   System identifies GLD ETF as high density proxy for institutional options chain.
+   Mathematical ratio is calculated as /GC price / GLD price.
+   Current Spot Anchor: 4794.20
+   Current Scaling Multiplier: 11.02x
+   Nominal Dollar Exposure: 5.6M USD per 1000 Open Interest
+
+2. TRADING REGIMES
+   Stability Zone: Logic dictates dealers are long gamma above the flip.
+   In this regime dealers trade against the trend to dampen volatility.
+   Liquidation Zone: Logic dictates dealers are short gamma below the flip.
+   In this regime dealers must sell into selling to hedge delta acceleration.
+
+3. OVERNIGHT EXECUTION PIVOTS
+   Gamma Flip Level: 4764.00
+   Structural Support Floor: 4776.00
+   No Man's Land Buffer: 12 Points between support and regime change.
+
+4. STOP AND REVERSE LOGIC
+   Trigger Condition: 4764.00 breach on 5 minute closing basis.
+   Execution Strategy: Stop-and-Reverse (SAR).
+   Order 1: Buy 1 unit at 4776.00 (Structural Support).
+   Order 2: Sell 2 units at 4764.00 (Gamma Flip Invalidation).
+   Result: Net short position if market enters liquidation regime.
